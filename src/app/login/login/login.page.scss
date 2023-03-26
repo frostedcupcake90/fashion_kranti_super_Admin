@@ -1,0 +1,118 @@
+ion-content {
+    --background: white;
+  
+    .page_wrapper {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100%;
+  
+      .warning_txt {
+        font-size: 12px;
+        text-align: right;
+        margin-left: auto;
+        width: max-content;
+        display: block;
+        margin-top: 6px;
+        color: #eb2626;
+      }
+  
+      .logoTxt {
+        margin: 0 0 24px 0;
+        text-align: center;
+        font: normal normal 25px "Roboto-Medium";
+        color: #efc949;
+      }
+  
+      .logo {
+        width: 80%;
+        margin: 0 auto 25px auto;
+        display: block;
+      }
+  
+      .head1 {
+        font: normal normal 16px "Roboto";
+        color: #3e5062;
+        text-align: center;
+      }
+  
+      .tabs {
+        display: flex;
+        justify-content: center;
+        margin: 15px 0 24px 0;
+  
+        .tbtn {
+          padding: 7px 14px;
+          border-radius: 30px;
+          font: normal normal 14px "Roboto";
+          background: #fff;
+          margin: 0 3px;
+          color: #017dc7;
+          border: 1px solid #017dc7;
+  
+          &.active {
+            background: #017dc7;
+            color: #ffffff;
+            border: 1px solid #017dc7;
+          }
+        }
+      }
+  
+      .card {
+        background: #fff;
+        padding: 16px 24px 30px 24px;
+        filter: drop-shadow(0 5px 11px #00000045);
+        border-radius: 18px;
+        outline: none;
+        overflow: hidden;
+        margin-bottom: 30px;
+        width: 30%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+  
+      .myBtnz {
+        --background: #8d99af;
+        font: normal normal 16px 'Roboto';
+        color: #fff;
+        --border-radius: 50px;
+        letter-spacing: .35px;
+        height: 51px;
+        width: 30%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+  
+        &.act {
+          --background: linear-gradient(270deg, #7ac9ff, #017dc7);
+          filter: drop-shadow(0 5px 10px #00000045);
+          --outline: none !important;
+        }
+      }
+  
+      .dflex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 18px;
+  
+        .txt {
+          font: normal normal 13px "Roboto";
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          span {
+            font: normal normal 13px "Roboto";
+            color: #017dc7;
+          }
+        }
+      }
+    }
+
+
+    ion-label{
+        color:#8d99af;
+    }
+  }

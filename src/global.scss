@@ -24,3 +24,14 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+ion-item.item-has-focus {
+    --highlight-background:#8d99af;
+ ion-label{
+        color: #8d99af !important;
+      }
+}
+
+ion-label{
+    color:#8d99af;
+}
