@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'forgot-email-password',
+    loadChildren: () => import('./login/forgot-email-password/forgot-email-password.module').then( m => m.ForgotEmailPasswordPageModule)
   }
 ];
 

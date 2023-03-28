@@ -35,3 +35,26 @@ ion-item.item-has-focus {
 ion-label{
     color:#8d99af;
 }
+
+ion-menu{
+    width: auto;
+}
+
+.title{
+    margin-bottom: 18px;
+    margin-top: 25px;
+    font: normal bold 28px "Roboto";
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+    &.subtitle{
+    margin-bottom: 28px;
+    font: normal normal 18px "Roboto";
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    }
+  }

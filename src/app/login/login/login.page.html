@@ -4,21 +4,40 @@
     <form action="">
       <!-- Login -->
       <div  *ngIf="type == 'signin'" class="card animate__animated animate__swing animate__delay-1s" >
-        <ion-item>
-          <ion-label position="floating" (ionChange)="validateLength($event); checkEvent(); onEmailChange();">Username</ion-label>
-          <ion-input placeholder="Enter Username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}"></ion-input>
+        <div>
+          <span class="title">Admin Login</span>
+        </div>
+
+        <span class="title subtitle">Hey, Enter you details to get sign in to your account</span>
+        <div class="card item">
+        <ion-item > 
+          <ion-label position="floating">Username</ion-label>
+          <ion-input placeholder="Enter Username" maxlength="30" (focusout)="onEmailChange()" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"></ion-input>
         </ion-item>
+        <span class="warning_txt" *ngIf="emailError">{{emailError}}</span>
         <ion-item>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" placeholder="Enter Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" ></ion-input>
-          <img  *ngIf="ey1"  slot="end" (click)="hideShowPassword()" class="inputicon" slot="end" src="/assets/icon/{{passwordIcon1}}.svg" />
+          <ion-input [type]="show ? 'text' : 'password'"  placeholder="Enter Password" (ionChange)="checkEvent()" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" ></ion-input>
+          <img  slot="end" (click)="hideShowPassword();" class="inputicon" slot="end" src="/assets/svgs/{{passwordIcon1}}.svg" />
         </ion-item>
-        <span class="warning_txt" *ngIf="incorrectPassword">Incorrect Password</span>
+        </div>
+        <span class="warning_txt" *ngIf="passwordError">{{passwordError}}</span>
+        <div class="dflex">
+          <div class="txt"  *ngIf="type == 'signin'" (click)="forgotRedirection();clear()">Having trouble in sign in?</div>
+          <div class="txt"  *ngIf="type == 'signin'" (click)="type='signUp';clear()">Don't have an account?</div>
+        </div>
+        <ion-button class="myBtnz" expand="block" *ngIf="type == 'signin'" [ngClass]="checkevent('signin') ? 'act' : ''" (click)="signinFunc()">Sign in</ion-button>
       </div>
       <!-- Login End -->
 
       <!-- Register -->
       <div class="card animate__animated animate__swing" *ngIf="type == 'signUp'">
+        <div>
+          <span class="title">Admin Signup</span>
+        </div>
+
+        <span class="title subtitle">Hey, Enter you details to get in sign up to your account</span>
+        <div class="card item">
         <ion-item>
           <ion-label position="floating" >Name</ion-label>
           <ion-input placeholder="Enter Full Name" [(ngModel)]="fullname" [ngModelOptions]="{standalone: true}"></ion-input>
@@ -26,27 +45,40 @@
 
         <ion-item>
           <ion-label position="floating" >Email</ion-label>
-          <ion-input placeholder="Enter Email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"></ion-input>
+          <ion-input placeholder="Enter Email" maxlength="30" (focusout)="onEmailChange()" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"></ion-input>
+        </ion-item>
+        <span class="warning_txt" *ngIf="emailError">{{emailError}}</span>
+        <ion-item>
+          <ion-label position="floating" >Mobile number</ion-label>
+          <ion-input placeholder="Enter mobile number" maxlength="10" [(ngModel)]="mobileNo" [ngModelOptions]="{standalone: true}"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating" >Date of Birth</ion-label>
+          <ion-input placeholder="Enter date of birth" [(ngModel)]="dob" type="date" [max]="validatorService.currentDate()" [min]="validatorService.minDate()" [ngModelOptions]="{standalone: true}"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">Set Password</ion-label>
-          <ion-input type="password" placeholder="Enter Password" [(ngModel)]="set_password" [ngModelOptions]="{standalone: true}"></ion-input>
+          <ion-input type="password" placeholder="Enter Password" maxlength="15" [(ngModel)]="set_password" [ngModelOptions]="{standalone: true}"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">Confirm Password</ion-label>
-          <ion-input type="password" placeholder="Re-Enter Pasword" [(ngModel)]="confirm_password" [ngModelOptions]="{standalone: true}"></ion-input>
+          <ion-input type="password" placeholder="Re-Enter Pasword" maxlength="15" [(ngModel)]="confirm_password" [ngModelOptions]="{standalone: true}"></ion-input>
         </ion-item>
         <span class="warning_txt" *ngIf="errorText">Password does not match!</span>
+        </div>
+        <div class="dflex">
+          <div class="txt"  *ngIf="type == 'signUp'" (click)="type = 'signin'">Already have an account?</div>
+        </div>
+        <ion-button class="myBtnz" expand="block" *ngIf="type == 'signUp'" [ngClass]="checkevent('signup') ? 'act' : ''" (click)="signupFunc()">Sign Up</ion-button>
       </div>
       <!-- Register End-->
-      <ion-button class="myBtnz" expand="block" *ngIf="type == 'signin'" [ngClass]="checkevent('signin') ? 'act' : ''" (click)="signinFunc()">Sign in</ion-button>
-      <ion-button class="myBtnz" expand="block" *ngIf="type == 'signUp'" [ngClass]="checkevent('signup') ? 'act' : ''" (click)="signupFunc()">Sign Up</ion-button>
-      <div class="dflex">
-        <div class="txt"  *ngIf="type == 'signin'">Don't have an account? <span (click)="type='signUp'">Signup</span></div>
-        <div class="txt"  *ngIf="type == 'signUp'">Already have an account? <span (click)="type = 'signin'">Signin</span></div>
-      </div>
+
+
+      
+     
     </form>
 
   </div>

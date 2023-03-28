@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, MenuController, NavController } from '@ionic/angular';
+import { errorMessage } from 'src/app/service/common/resources';
+import { ValidatorsService } from 'src/app/service/validators.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,6 @@ export class LoginPage implements OnInit {
   options:any
   auth:any
   emailPattern = /^[A-Za-z0-9]+([._-]{0,1}[A-Za-z0-9])+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-    username: string = '';
     password: any;
     fullname: string = '';
     email: string = '';
@@ -23,9 +24,18 @@ export class LoginPage implements OnInit {
     passwordIcon1: string = 'eye-off';
     show: boolean = false;
     ey1: any = false;
-    incorrectPassword:any = false
+    passwordError:String = '';
+    dob: String = '';
+    emailError:String = '';
     constructor(
-      public navCtrl : NavController, public alert:AlertController) { }
+      public navCtrl : NavController, public alert:AlertController,
+      private menuCtrl: MenuController,
+      public validatorService: ValidatorsService) { 
+console.log('loginpage')
+console.log(this.validatorService.minDate())
+console.log(this.validatorService.currentDate())
+        this.menuCtrl.enable(false);
+      }
   
     ngOnInit() {
   
@@ -38,12 +48,6 @@ export class LoginPage implements OnInit {
   
     btnCheck = false
     checkEvent() {
-      if (this.password && this.password.length > 0) {
-        this.ey1 = true;
-      }
-      else {
-        this.ey1 = false;
-      }
       if (this.password && this.password.length > 0) {
         this.btnCheck = true
         return true;
@@ -94,9 +98,8 @@ export class LoginPage implements OnInit {
       })
     }
     signinFunc(){
-      this.incorrectPassword = false
       let cred= { "user": { 
-        "email": this.username, 
+        "email": this.email, 
       "password": this.password
     }}
     this.navCtrl.navigateForward('/dashboard')
@@ -126,7 +129,7 @@ export class LoginPage implements OnInit {
   
     checkevent(btnName:any){
       if(this.type == 'signin'){
-        if(this.username && this.password)
+        if(!this.emailError && this.password)
         {
           return true
         }else{
@@ -144,17 +147,23 @@ export class LoginPage implements OnInit {
     }
   }
 
-  validateLength(event:any){
-    if (event.target.value.length > 50){
-      this.email = event.target.value.substring(0, 49);
-    }
-  }
 
   onEmailChange() {
     if (!this.emailPattern.test(this.email.trim())) {
-     // this.emailError = errorMessage.invalidEmail
+     this.emailError = errorMessage.invalidEmail
     } else {
-     // this.emailError = ''
+      this.emailError = ''
     }
+  }
+
+  forgotRedirection(){
+    this.navCtrl.navigateForward('/forgot-email-password')
+  }
+
+  clear(){
+    this.emailError = '';
+    this.email = '';
+    this.mobileNo = undefined;
+    this.dob = '';
   }
   }
